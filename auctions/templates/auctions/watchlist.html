@@ -1,0 +1,37 @@
+  
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h1>Your Watchlist:</h1>
+
+    {% if watchlist %}
+
+        {% for wl in watchlist %}
+
+            <div class = "container jumbotron">
+                <h2><a href="{% url 'listing' wl.listing.id %}">{{wl.listing.title}}</a></h2>
+
+
+                {% if wl.listing.img_url %}
+                    <img src="{{wl.listing.img_url}}"  style = "width: 30vw">
+                {% endif %}
+
+
+                <div style = "display: inline-block;">
+                    Listed by: {{wl.listing.user}}
+
+                    <br>
+
+                    Description: <p>{{wl.listing.description}}</p>
+
+                    {% if wl.listing.category %}
+                        Category: <p style = "color: darkgray">{{wl.listing.category}}</p>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}
